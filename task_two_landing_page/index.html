@@ -1,1 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Tech Company</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-6 -7.20312 14.89 12.37'%3E%3Cpath  fill='white' d='M5.56-6.81c-.15.22-.46.51-.68.66-.37.25-.4.29-.34.63.03.2.09.82.12 1.37.05.79.03 1.11-.1 1.48-.09.26-.16.74-.16 1.07 0 .58-.01.6-.53 1.13-.45.46-.94.78-1 .65-.01-.01-.18-.5-.37-1.08l-.35-1.05-.35.02c-.72.06-.8.1-.73.44.03.18.06.68.07 1.12l.01.8-.64.13c-.35.07-.67.11-.72.09-.1-.07-.01-3.6.11-4.05.04-.19.11-.6.15-.9.09-.69.23-.92.76-1.18.49-.24.67-.19 1.11.32.4.45.53.99.32 1.31-.21.32-.37.32-.58 0-.22-.33-.36-.32-.74.08-.39.41-.43.88-.1 1.11.34.24 1.54.22 1.96-.04.53-.33.92-1.04.92-1.69 0-.97-.35-1.44-1.74-2.29-.31-.19-1.03-.08-1.72.25-.84.41-.99.51-1.82 1.16-.42.33-.93.63-1.17.69l-.42.11.38 1.13c.28.85.4 1.42.48 2.31.12 1.21.16 1.62.31 2.95.07.6.06.89-.06 1.27-.2.69-.51.91-1.25.91-.82 0-.94-.19-.86-1.4.06-.97.19-1.33.45-1.28.26.05.27.56.03.88-.47.64-.33 1.06.27.81.49-.21.83-.57.92-.96.07-.33.04-.47-.2-.95-.24-.48-.34-.58-.68-.68-1.09-.33-1.8-.03-2.31.99-.26.53-.31.73-.31 1.33.01.73.21 1.31.5 1.47 1.1.59 2.46.95 3.18.84.53-.08 1.23-.37 1.4-.58.12-.14.25-.73.4-1.81l.07-.5.7-.17c.38-.1.7-.17.7-.16 0 .01.1.23.23.5.17.37.22.67.23 1.35.01.48.04.98.08 1.12.07.23.12.25.55.23.92-.05 1.04-.27.82-1.43-.08-.41-.13-.77-.11-.78.02-.02.33.19.7.47.66.51.67.51 1.43.52 1 .02 1.22-.01 1.49-.15.26-.13 1.67-1.86 1.93-2.37.18-.34.64-1.98.58-2.04-.02-.02-.15-.06-.29-.1-.24-.06-.28-.01-.65.7-.56 1.09-1.51 2.26-2 2.47-.56.23-.95.28-1.26.15-.26-.11-1.28-1.2-1.28-1.36 0-.04.16-.15.36-.24.2-.1.59-.4.88-.67.45-.42.55-.58.66-1.07.07-.32.25-.94.4-1.38.67-1.92.98-4.37.59-4.61-.05-.03-.09-.14-.09-.25 0-.33-.35-.22-.64.2z'/%3E%3C/svg%3E">
+    <style>
+        body, html {
+            font-family: Courier, monospace;
+        }
 
+        h1, h2, h3, h4, h5, h6 {
+            font-family: Papyrus, fantasy;
+        }
+
+        body::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: rgba(34, 197, 94, 0.5);
+            border-radius: 6px;
+            border: 3px solid transparent;
+        }
+
+        canvas {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100vw; /* Use 'vw' units for viewport width */
+            height: 100vh; /* Use 'vh' units for viewport height */
+            z-index: -1; /* Ensure canvas is behind other content */
+        }
+
+        /* Adjusted backgrounds for each section */
+        .bg-about {
+            background-image: url('assets/bg\ 1.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .bg-services {
+            background-image: url('assets/bg\ 2.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .bg-testimonials {
+            background-image: url('assets/bg\ 3.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .bg-partners {
+            background-image: url('assets/bg\ 4.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .bg-founders {
+            background-image: url('founders-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .bg-prospectus {
+            background-image: url('assets/bg\ 1.jpg');
+            background-size: cover;
+
+            background-position: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1.4s;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+        }
+
+        /* Navigation Styles */
+        .mobile-menu {
+            display: none;
+        }
+        .icon{
+        height: 2.5vh;
+        width: 2.5vh;
+        
+        position: absolute;
+        bottom: 1%;
+        fill:beige;
+        z-index: 14;
+        right: 1%;
+        background-color: #3c5a4780;
+        border-radius: 20%;
+    }
+    .heading {
+      font-size: 2.5vh;
+      position: absolute;
+      top: 10%;
+      right: 0px;
+      transform: translateY(0%) translateX(40%) rotate(-90deg);
+      color: beige; /* Initial color */
+      transition: color 1s ease; 
+      background-color: #111;
+	        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none;
+
+      
+      z-index: 84;
+
+      
+    }
+
+
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .mobile-menu ul {
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 10px;
+                background-color: #4CAF50;
+                padding: 10px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .mobile-menu ul.show {
+                display: block;
+            }
+
+            .mobile-menu ul li {
+                list-style-type: none;
+                margin-bottom: 10px;
+            }
+
+            .mobile-menu ul li a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: bold;
+            }
+        }
+    </style>
+</head>
+<body class="font-courier leading-normal tracking-normal">
+    <h6 class="heading" id="heading">AYKEN</h1>
+    <h6>
+    <svg class="icon" viewBox="-6 -7.20312 14.89 12.37" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5.56-6.81c-.15.22-.46.51-.68.66-.37.25-.4.29-.34.63.03.2.09.82.12 1.37.05.79.03 1.11-.1 1.48-.09.26-.16.74-.16 1.07 0 .58-.01.6-.53 1.13-.45.46-.94.78-1 .65-.01-.01-.18-.5-.37-1.08l-.35-1.05-.35.02c-.72.06-.8.1-.73.44.03.18.06.68.07 1.12l.01.8-.64.13c-.35.07-.67.11-.72.09-.1-.07-.01-3.6.11-4.05.04-.19.11-.6.15-.9.09-.69.23-.92.76-1.18.49-.24.67-.19 1.11.32.4.45.53.99.32 1.31-.21.32-.37.32-.58 0-.22-.33-.36-.32-.74.08-.39.41-.43.88-.1 1.11.34.24 1.54.22 1.96-.04.53-.33.92-1.04.92-1.69 0-.97-.35-1.44-1.74-2.29-.31-.19-1.03-.08-1.72.25-.84.41-.99.51-1.82 1.16-.42.33-.93.63-1.17.69l-.42.11.38 1.13c.28.85.4 1.42.48 2.31.12 1.21.16 1.62.31 2.95.07.6.06.89-.06 1.27-.2.69-.51.91-1.25.91-.82 0-.94-.19-.86-1.4.06-.97.19-1.33.45-1.28.26.05.27.56.03.88-.47.64-.33 1.06.27.81.49-.21.83-.57.92-.96.07-.33.04-.47-.2-.95-.24-.48-.34-.58-.68-.68-1.09-.33-1.8-.03-2.31.99-.26.53-.31.73-.31 1.33.01.73.21 1.31.5 1.47 1.1.59 2.46.95 3.18.84.53-.08 1.23-.37 1.4-.58.12-.14.25-.73.4-1.81l.07-.5.7-.17c.38-.1.7-.17.7-.16 0 .01.1.23.23.5.17.37.22.67.23 1.35.01.48.04.98.08 1.12.07.23.12.25.55.23.92-.05 1.04-.27.82-1.43-.08-.41-.13-.77-.11-.78.02-.02.33.19.7.47.66.51.67.51 1.43.52 1 .02 1.22-.01 1.49-.15.26-.13 1.67-1.86 1.93-2.37.18-.34.64-1.98.58-2.04-.02-.02-.15-.06-.29-.1-.24-.06-.28-.01-.65.7-.56 1.09-1.51 2.26-2 2.47-.56.23-.95.28-1.26.15-.26-.11-1.28-1.2-1.28-1.36 0-.04.16-.15.36-.24.2-.1.59-.4.88-.67.45-.42.55-.58.66-1.07.07-.32.25-.94.4-1.38.67-1.92.98-4.37.59-4.61-.05-.03-.09-.14-.09-.25 0-.33-.35-.22-.64.2z" fill="beige"/></svg>
+    </h6>
+
+
+    <!-- Header -->
+    <header class="bg-green-600 p-6 fixed w-full z-10">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-white text-3xl font-bold font-papyrus">Green Tech Company</h1>
+            <nav class="desktop-menu text-white space-x-6">
+                <a href="#about" class="hover:text-green-200" onclick="fullpage_api.moveTo(1)">About</a>
+                <a href="#services" class="hover:text-green-200" onclick="fullpage_api.moveTo(2)">Services</a>
+                <a href="#testimonials" class="hover:text-green-200" onclick="fullpage_api.moveTo(3)">Testimonials</a>
+                <a href="#partners" class="hover:text-green-200" onclick="fullpage_api.moveTo(4)">Partners</a>
+                <a href="#founders" class="hover:text-green-200" onclick="fullpage_api.moveTo(5)">Founders</a>
+                <a href="#prospectus" class="hover:text-green-200" onclick="fullpage_api.moveTo(6)">Prospectus</a>
+                <a href="#contact" class="hover:text-green-200" onclick="fullpage_api.moveTo(7)">Contact</a>
+            </nav>
+            <div class="mobile-menu text-white">
+                <button onclick="toggleMenu()" class="focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <ul id="mobileMenu" class="text-sm">
+                    <li><a href="#about" onclick="toggleMenu(); fullpage_api.moveTo(1)">About</a></li>
+                    <li><a href="#services" onclick="toggleMenu(); fullpage_api.moveTo(2)">Services</a></li>
+                    <li><a href="#testimonials" onclick="toggleMenu(); fullpage_api.moveTo(3)">Testimonials</a></li>
+                    <li><a href="#partners" onclick="toggleMenu(); fullpage_api.moveTo(4)">Partners</a></li>
+                    <li><a href="#founders" onclick="toggleMenu(); fullpage_api.moveTo(5)">Founders</a></li>
+                    <li><a href="#prospectus" onclick="toggleMenu(); fullpage_api.moveTo(6)">Prospectus</a></li>
+                    <li><a href="#contact" onclick="toggleMenu(); fullpage_api.moveTo(7)">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div id="fullpage">
+        <!-- About Section -->
+        
+<section class="section bg-cover  bg-about flex items-center justify-center text-white fade-in">
+    <div class="container mx-auto p-6">
+        <div class="bg-green-800 bg-opacity-60 rounded shadow-md text-center p-6">
+            <h2 class="text-4xl font-bold mb-4">About Us</h2>
+            <p class="text-xl">
+                Our core philosophy revolves around the belief that technology can and should be harnessed to create positive change. This belief is reflected in our comprehensive approach to sustainable development, where we focus on researching, developing, and implementing cutting-edge technologies that minimize carbon footprints, reduce waste, and conserve natural resources.
+
+                Central to our mission is the relentless pursuit of innovation. We invest heavily in research and development to push the boundaries of what is possible in green technology. From renewable energy solutions to advanced recycling processes, our diverse portfolio of technologies aims to cater to a wide array of industries, including but not limited to agriculture, manufacturing, transportation, and construction.
+
+                Collaboration is at the heart of our operational ethos. We partner with like-minded organizations, academic institutions, and governmental bodies to foster an ecosystem of knowledge sharing and collective problem-solving. By pooling together expertise and resources, we accelerate the pace of innovation and magnify our impact on a global scale.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+        <!-- Services Section -->
+        <section class="section bg-cover bg-green bg-services flex items-center justify-center text-white fade-in">
+            <div class="container mx-auto p-6 bg-green-800 bg-opacity-60 rounded shadow-md text-center">
+                <h2 class="text-4xl font-bold mb-4">Our Services</h2>
+                <ul class="list-disc list-inside text-justify text-xl">
+                    <li>Renewable Energy Solutions</li>
+                    <li>Energy Efficiency Consulting</li>
+                    <li>Eco-friendly Product Development</li>
+                    <li>Sustainable Business Strategies</li>
+                    <li>Carbon Footprint Analysis and Reduction Strategies</li>
+                    <li>Green Building Certification and Design</li>
+                    <li>Electric Vehicle Charging Infrastructure</li>
+                    <li>Climate Change Adaptation Planning</li>
+                    <li>Environmental Education and Awareness Programs</li>
+                    <li>Green Supply Chain Management</li>
+                    <li>Biotechnology for Environmental Remediation</li>
+                    <li>Smart Agriculture Solutions</li>
+
+
+                </ul>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section bg-cover bg-testimonials flex items-center justify-center text-white fade-in">
+            <div class="container mx-auto p-6 bg-green-800 bg-opacity-60 rounded shadow-md text-center">
+                <h2 class="text-4xl font-bold mb-4">What Our Customers Say</h2>
+                <div class="space-y-4 text-xl">
+                    <blockquote class="bg-green-800 bg-opacity-50 p-4 border-l-4 border-green-500">
+                        <p>"Green Tech Company transformed our business with their innovative solutions. Highly recommend!" - Jane Doe, CEO of EcoBiz</p>
+                    </blockquote>
+                    <blockquote class="bg-green-800 bg-opacity-50 p-4 border-l-4 border-green-500">
+                        <p>"Their dedication to sustainability is unmatched. We saw immediate benefits." - John Smith, CTO of Green Solutions</p>
+                    </blockquote>
+                    <blockquote class="bg-green-800 bg-opacity-50 p-4 border-l-4 border-green-500">
+                        <p>"Their waste management and recycling solutions have revolutionized how we handle municipal waste, turning it into a resource rather than a burden." - Hailey Cooper, CFO of TechEnviron</p>
+                    </blockquote>
+                    <blockquote class="bg-green-800 bg-opacity-50 p-4 border-l-4 border-green-500">
+                        <p>"As an advocate for electric vehicles and renewable energy, I'm thrilled with [Company Name]'s commitment to sustainable transportation solutions. " - David Lee, EV Enthusiast and Advocate</p>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bg-cover bg-partners flex items-center justify-center text-white fade-in">
+            <div class="container mx-auto p-6 bg-green-800 bg-opacity-60 rounded shadow-md text-center">
+                <h2 class="text-4xl font-bold mb-4">Our Partners</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="w-full">
+                        <img src="assets/partner1.png" alt="Partner 1" class="object-contain w-full h-48 rounded-md">
+                    </div>
+                    <div class="w-full">
+                        <img src="assets/partner2.png" alt="Partner 2" class="object-contain w-full h-48 rounded-md">
+                    </div>
+                    <div class="w-full">
+                        <img src="assets/partner 3.png" alt="Partner 3" class="object-contain w-full h-48 rounded-md">
+                    </div>
+                    <div class="w-full">
+                        <img src="assets/partner4.png" alt="Partner 4" class="object-contain w-full h-48 rounded-md">
+                   
+                </div>
+            </div>
+        </section>
+
+        <!-- Founders Section -->
+        <section class="section bg-cover bg-founders flex items-center justify-center text-white fade-in">
+            <div class="container mx-auto p-6 bg-green-800 bg-opacity-60 rounded shadow-md text-center">
+                <h2 class="text-4xl font-bold mb-4">Meet the Founders</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="w-full text-center">
+                        <img src="assets/founder 1.png" alt="Founder 1" class="object-contain w-full h-48 rounded-full mb-4">
+                        <h3 class="text-2xl font-bold">Ayken Asin</h3>
+                        <p class="text-lg">CEO & Co-Founder</p>
+                    </div>
+                    <div class="w-full text-center">
+                        <img src="assets/founder 2.png" alt="Founder 2" class="object-contain w-full h-48 rounded-full mb-4">
+                        <h3 class="text-2xl font-bold">Jake</h3>
+                        <p class="text-lg">CTO & Co-Founder</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+       
+        <!-- Prospectus Section -->
+<section class="section bg-cover bg-prospectus flex items-center justify-center text-white fade-in">
+    <div class="container mx-auto p-6">
+        <div class="bg-green-800 bg-opacity-60 rounded shadow-md text-center p-6">
+            <h2 class="text-4xl font-bold mb-4 ">Investment Prospectus</h2>
+            <p class="text-xl">Explore opportunities to invest in our innovative projects and contribute to a sustainable future.</p>
+            <a href="prospectus.pdf" class="mt-4 inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Download Prospectus</a>
+        </div>
+    </div>
+</section>
+
+
+        <!-- Contact Section -->
+        <section class="section bg-green-800 text-white p-6">
+            <div class="container mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <h3 class="font-bold mb-2">Contact Us</h3>
+                        <p>Email: ayushman1044@yahoo.com</p>
+                        <p>Phone: 104410441044</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2">Follow Us</h3>
+                        <div class="space-x-4">
+                            <a href="https://www.facebook.com/ayushman0408" class="hover:text-green-400">Facebook</a>
+                            <a href="https://x.com/Ayushman1044" class="hover:text-green-400">Twitter</a>
+                            <a href="https://www.linkedin.com/in/ayushman-behera-296018191/" class="hover:text-green-400">LinkedIn</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2">Our Location</h3>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3692.8119473765473!2d84.81692757586534!3d22.24721274481641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a20197ebdbdeb8d%3A0x1a65b18a67ce93f0!2sBiju%20Patnaik%20University%20of%20Technology%20Rourkela%20Odisha!5e0!3m2!1sen!2sin!4v1719156692430!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Canvas for Particle Animation -->
+    <canvas id="particlesCanvas" class="fixed top-0 left-0 w-full h-full"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
+    <script>
+        // Initialize fullpage.js
+        new fullpage('#fullpage', {
+            autoScrolling: true,
+            navigation: true,
+            scrollingSpeed: 700,
+            afterLoad: function(origin, destination, direction){
+                var section = destination.item;
+                section.classList.add('show');
+            }
+        });
+
+        // Particle Animation
+        const canvas = document.getElementById('particlesCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const particles = [];
+        const numParticles = 1000;
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                const phi = Math.random() * 2 * Math.PI;
+                const costheta = Math.random() * 2 - 1;
+                const theta = Math.acos(costheta);
+                const r = Math.random() * 50 + 200;
+
+                this.x = r * Math.sin(theta) * Math.cos(phi);
+                this.y = r * Math.sin(theta) * Math.sin(phi);
+                this.z = r * Math.cos(theta);
+
+                this.vx = (Math.random() - 0.5) * 0.1;
+                this.vy = (Math.random() - 0.5) * 0.1;
+                this.vz = (Math.random() - 0.5) * 0.1;
+
+                this.alpha = 1;
+                this.decay = Math.random() * 0.01 + 0.005;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.z += this.vz;
+
+                this.z -= 2; // Move particle towards the viewer
+
+                if (this.z < -200) {
+                    this.reset();
+                    this.z = 200;
+                }
+
+                this.alpha -= this.decay;
+                if (this.alpha <= 0) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                const perspective = 400 / (400 + this.z);
+                const x2d = (this.x * perspective) + canvas.width / 2;
+                const y2d = (this.y * perspective) + canvas.height / 2;
+                const radius = 2 * perspective;
+
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(x2d, y2d, radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'white';
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function initializeParticles() {
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        initializeParticles();
+        animate();
+
+        // Handle window resize event
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
